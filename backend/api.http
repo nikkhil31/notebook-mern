@@ -1,0 +1,121 @@
+@baseUrl = http://127.0.0.1:8000/api
+
+
+POST {{ baseUrl }}/register
+content-type: application/json
+
+{
+    "firstName": "nikhil",
+    "lastName": "limbad",
+    "email":"nikhil@gmail.com",
+    "password":"nikhil"
+}
+
+
+###
+
+# @name Auth
+
+POST {{ baseUrl }}/auth
+content-type: application/json
+
+
+{
+    "email":"nikhil@gmail.com",
+    "password":"nikhil"
+}
+
+
+
+###
+
+#### Variable Response 
+@accessToken = {{Auth.response.body.$.data.access_token}}
+
+
+
+GET {{ baseUrl }}/category
+Authorization: Bearer {{ accessToken }}
+
+
+
+
+###
+
+POST {{ baseUrl }}/category
+Authorization: Bearer {{ accessToken }}
+content-type: application/json
+
+{
+    "title":""
+}
+
+
+
+###
+
+PUT {{ baseUrl }}/category
+Authorization: Bearer {{ accessToken }}
+content-type: application/json
+
+{
+    "category":"62d82fe15354cee7ba0b6491",
+    "title":"abc"
+}
+
+
+###
+
+DELETE  {{ baseUrl }}/category
+Authorization: Bearer {{ accessToken }}
+content-type: application/json
+
+{
+    "category":"62d83090d6bcacb1b8c03c19"
+}
+
+
+###
+
+
+GET {{baseUrl}}/notes?note=
+Authorization: Bearer {{ accessToken }}
+
+###
+
+
+POST {{baseUrl}}/notes
+Authorization: Bearer {{ accessToken }}
+content-type: application/json
+
+{
+    "title":"test",
+    "category":"62d831117dd7afbbb648bb0d",
+    "description":"test"
+}
+
+
+###
+
+
+PUT  {{baseUrl}}/notes
+Authorization: Bearer {{ accessToken }}
+content-type: application/json
+
+{
+    "note":"62d8449df173ae91667d6a48",
+    "title":"test",
+    "category":"62d831117dd7afbbb648bb0d",
+    "description":"test"
+}
+
+
+###
+
+DELETE  {{ baseUrl }}/notes
+Authorization: Bearer {{ accessToken }}
+content-type: application/json
+
+{
+    "note":"62d8449df173ae91667d6a48"
+}

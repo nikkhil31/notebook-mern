@@ -1,0 +1,5 @@
+1. add custme validation for parent fields
+2. add handlevalidatin middlewere
+3. add model level middlewere to exclude unwanted fields
+4. fix 404 in app.js
+5. while registration check email dublication
