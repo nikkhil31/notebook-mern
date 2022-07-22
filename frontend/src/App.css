@@ -1,38 +1,343 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500&display=swap');
+
+:root {
+  --boder-radius: 63px;
+  --element-hight: 95%;
+  --logo-size: 50px;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #F0EEEE;
+  display: flex;
+  align-items: center;
+}
+
+
+.navigation {
+  background-color: #000;
+  width: 15%;
+  height: var(--element-hight);
+  border-top-right-radius: var(--boder-radius);
+  border-bottom-right-radius: var(--boder-radius);
+}
+
+
+
+.logo {
+  width: calc(112% - var(--boder-radius));
+  height: 14%;
+  /* background-color: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  /* border: 1px solid #fff; */
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+
+.listcontainer {
+
+  height: 80%;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  /* background-color: #fff; */
+  overflow-y: scroll;
+
+}
+
+.listcontainer::-webkit-scrollbar {
+  display: none;
+}
+
+
+.list {
+  width: 90%;
+  /* justify-content: center; */
+}
+
+.list li {
+  /* background-color: #fff; */
+  padding: .8rem;
+  margin: 1rem 0;
+  list-style: none;
+  color: #fff;
+  font-size: 18px;
+  position: relative;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  /* padding-right: 1rem; */
+}
+
+.list li:hover,
+.list li.active {
+  border-left: 3px solid #fff;
+}
+
+.list li input {
+  /* height: 100%; */
+  width: 100%;
+  padding: .8rem;
+  font-size: 18px;
+} 
+
+
+
+/* notelist container */
+
+.noteslist {
+  background-color: #fff;
+  width: 25%;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+
+.search {
+  /* border-bottom: 3px solid #000; */
+  height: 14%;
+  display: flex;
+  /* align-items: flex-end; */
+  border-bottom: 3px solid #000;
+  /* background-color: #000; */
+  position: relative;
+}
+
+
+.search input {
+  width: 80%;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  padding-left: 2.4rem;
+  align-self: flex-end;
+  font-weight: bold;
+}
+
+.searchicon {
+  position: absolute;
+  bottom: 3px;
+  left: 10px;
+  font-size: 20px;
+}
+.search input::placeholder {
+  color: #000;
+}
+
+.notescontainer {
+  margin-top: 1rem;
+  /* background-color: #000; */
+  height: 78%;
+}
+
+
+.notescontainer li {
+  list-style: none;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 0.5rem;
+  overflow: hidden;
+  height: 50px;
+  margin-bottom: 0.8rem;
+  cursor: pointer;
+}
+
+
+
+/* .notescontainer li p {
+    font-size: 14px;
+} */
+
+.notescontainer li .title {
+  font-size: 14px;
+  overflow: hidden;
+  /* background-color: #000; */
+  font-weight: bolder;
+  height: 60%;
+}
+
+
+.notescontainer li .para {
+  font-size: 11px;
+  overflow: hidden;
+  /* background-color: #000; */
+  /* border: 1px solid #000; */
+  height: 40%;
+  width: 80%;
+  display: inline-block;
+}
+
+.notescontainer li .time {
+  font-size: 11px;
+  /* border: 1px solid #000; */
+  height: 40%;
+  display: inline-block;
+}
+
+
+
+.notescontainer li:hover,
+.notescontainer li.active,
+.notescontainer li:hover p {
+  background-color: #606060;
+  color: #fff;
+  /* list-style: none;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 0.5rem;
+    overflow: hidden;
+    height: 50px;
+    margin-bottom: 0.8rem; */
+}
+
+
+.noteeditor {
+  background-color: #fff;
+  width: 57%;
+  margin-left: 1rem;
+  padding: 2.5rem 1rem;
+}
+
+.noteeditor form {
+  height: 100%;
+}
+
+.noteeditor .toolbar {
+  background-color: rgb(73, 186, 238);
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  color: #fff;
+  font-size: 22px;
+}
+
+.noteeditor .heading {
+  margin-top: 1rem;
+}
+
+.noteeditor .heading input {
+  width: 100%;
+  font-size: 20px;
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid #ddd;
+  padding: 0.2rem;
+}
+
+
+.noteeditor .textarea {
+  margin-top: 1rem;
+  height: 78%;
+}
+
+.noteeditor .textarea textarea {
+    width: 100%;
+    height:100%;
+    font-size: 20px;
+    border: 2px solid #ddd;
+    padding: 1rem;
+    resize: none;
+    border-radius: 10px;
+    /* outline: 0; */
+}
+
+/* utils */
+
+.box {
+  background-color: #fff;
+  height: var(--element-hight);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--boder-radius);
+}
+
+
+
+
+
+/* Login */
+
+.loginBox {
+  width: 400px;
+  height: 400px;
+  background-color: #fff;
+  margin: auto;
+  /* padding: auto; */
+}
+
+.loginBox h1 {
   text-align: center;
+  margin-top: 3rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loginBox form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 1.5rem;
+
 }
 
-.App-link {
-  color: #61dafb;
+.loginBox form input {
+  width: 100%;
+  height: 50px;
+  margin-top: 1rem;
+  font-size: 22px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.loginBox form input[type='text'],.loginBox form input[type='password'] {
+  padding: 1rem;
+  border: 2px solid #ddd;
+}
+
+.loginBox form input[type='submit'] {
+  background-color: rgb(54, 112, 237);
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  width: 270px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  /* align-items: center; */
+}
+
+.form-field span {
+  align-self: flex-start;
+  color: #e91919;
 }
