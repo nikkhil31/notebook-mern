@@ -106,6 +106,7 @@ body {
   width: 100%;
   padding: .8rem;
   font-size: 18px;
+  color: #000;
 } 
 
 
@@ -164,7 +165,7 @@ body {
   list-style: none;
   border: 2px solid #000;
   border-radius: 8px;
-  padding: 0.5rem;
+  padding: 0.1rem 0.5rem;
   overflow: hidden;
   height: 50px;
   margin-bottom: 0.8rem;
@@ -182,7 +183,8 @@ body {
   overflow: hidden;
   /* background-color: #000; */
   font-weight: bolder;
-  height: 60%;
+  height: 50%;
+  /* padding-top: 5px; */
 }
 
 
@@ -191,16 +193,22 @@ body {
   overflow: hidden;
   /* background-color: #000; */
   /* border: 1px solid #000; */
-  height: 40%;
-  width: 80%;
+  /* height: 23px; */
+  width: 75%;
   display: inline-block;
 }
 
 .notescontainer li .time {
   font-size: 11px;
   /* border: 1px solid #000; */
-  height: 40%;
+  /* height: 23px; */
   display: inline-block;
+}
+
+.notescontainer li div {
+  display: flex;
+  margin-top: 0.2rem;
+  /* padding-bottom: 5px; */
 }
 
 
@@ -286,19 +294,24 @@ body {
 
 
 
+
+
+
 /* Login */
 
 .loginBox {
   width: 400px;
-  height: 400px;
+  /* height: 400px; */
   background-color: #fff;
   margin: auto;
   /* padding: auto; */
+  padding-bottom: 3rem;
 }
 
 .loginBox h1 {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
+  font-size: 35px;
 }
 
 .loginBox form {
@@ -327,7 +340,7 @@ body {
   color: #fff;
   outline: none;
   cursor: pointer;
-  width: 270px;
+  width: 320px;
 }
 
 .form-field {
@@ -337,7 +350,12 @@ body {
   /* align-items: center; */
 }
 
-.form-field span {
+.form-field span,.error {
   align-self: flex-start;
   color: #e91919;
+  display: block;
+  font-size: 15px;
+}
+.alert-container {
+  width: 315px;
 }

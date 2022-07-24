@@ -3,17 +3,18 @@ import { Alert, AlertIcon, Button, useToast } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { useLoginMutation } from '../services/notebook'
+import { useRegisterMutation } from '../services/notebook'
 import { emailRegex } from '../utils/utils'
 import { setCredentials } from '../slices/authSlice'
 import InputField from '../components/InputField'
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
 
-  const [login, { error, isLoading, isError }] = useLoginMutation()
+  const [regsiterUser: register, { error, isLoading, isError }] =
+    useRegisterMutation()
 
   const {
     register,
@@ -23,7 +24,7 @@ const Login = () => {
 
   const onSubmit = async data => {
     try {
-      const user = await login(data).unwrap()
+      const user = await regsiterUser(data).unwrap()
       const { access_token, ...rest } = user.data
       dispatch(setCredentials({ user: rest, token: access_token }))
       navigate('/')
@@ -42,7 +43,7 @@ const Login = () => {
   return (
     <div className='container'>
       <div className='loginBox'>
-        <h1>Login</h1>
+        <h1>Register</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='alert-container'>
             {isError && (
@@ -52,6 +53,22 @@ const Login = () => {
               </Alert>
             )}
           </div>
+
+          <InputField
+            name='First Name'
+            register={register('firstName', {
+              required: true,
+            })}
+            errors={errors}
+          />
+
+          <InputField
+            name='Last Name'
+            register={register('lastName', {
+              required: true,
+            })}
+            errors={errors}
+          />
 
           <InputField
             name='Email'
@@ -78,8 +95,9 @@ const Login = () => {
               Submit
             </Button>
           </div>
+
           <p>
-            Don't have account! <Link to='/register'>Register</Link>
+            Already have account! <Link to='/login'>Login</Link>
           </p>
         </form>
       </div>
@@ -87,4 +105,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

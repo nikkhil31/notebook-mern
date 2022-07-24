@@ -5,7 +5,7 @@ const handleValidation = (req, res, next) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    return apiResponse.ErrorResponse(
+    return apiResponse.successResponseWithData(
       res,
       'Validation failed!',
       errors.array({ onlyFirstError: true })

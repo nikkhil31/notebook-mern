@@ -78,7 +78,7 @@ content-type: application/json
 ###
 
 
-GET {{baseUrl}}/notes?note=
+GET {{baseUrl}}/notes?note=null
 Authorization: Bearer {{ accessToken }}
 
 ###

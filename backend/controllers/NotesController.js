@@ -6,21 +6,30 @@ import handleValidation from '../middleware/handleValidation.js'
 import Note from '../models/noteModel.js'
 
 export const getNote = asyncHandler(async (req, res) => {
-  const id = req.query.note
+  const id = req.query?.note === 'null' ? null : req.query?.note
+  const category =
+    req.query?.category === 'null' || req.query?.category === 'undefined'
+      ? null
+      : req.query?.category
 
-  const finedNote = id ? await Note.findById(id) : await Note.find({})
+  let finedNote = req.query?.note ? {} : []
+
+  // finedNote = id ? await Note.findById(id) : await Note.find({ category })
+
+  if (id) {
+    finedNote = await Note.findById(id)
+  }
+
+  if (category) {
+    finedNote = await Note.find({ category })
+  }
 
   return apiResponse.successResponseWithData(res, 'success', finedNote)
 })
 
 export const addNote = [
-  body('title').not().isEmpty().trim().isAlphanumeric(),
-  body('category')
-    .not()
-    .isEmpty()
-    .trim()
-    .isAlphanumeric()
-    .custom(checkCategoryExist),
+  body('title').not().isEmpty().trim(),
+  body('category').not().isEmpty().trim().custom(checkCategoryExist),
   body('description').not().isEmpty(),
   handleValidation,
   asyncHandler(async (req, res) => {
@@ -32,9 +41,9 @@ export const addNote = [
 ]
 
 export const updateNote = [
-  body('title').optional().trim().isAlphanumeric(),
-  body('category').optional().trim().isAlphanumeric(),
-  body('description').optional().trim().isAlphanumeric(),
+  body('title').optional().trim(),
+  body('category').optional().trim(),
+  body('description').optional().trim(),
   handleValidation,
   asyncHandler(async (req, res) => {
     const note = await Note.findById(req.body.note)
